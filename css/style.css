@@ -562,7 +562,7 @@ b i:nth-child(4) {
 }
 
 .box-words-wrapper b:last-of-type {
-    left: 32px !important;
+    left: 4vw !important;
 }
 
 .box-words-wrapper b.is-visible {
