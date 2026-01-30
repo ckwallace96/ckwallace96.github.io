@@ -218,12 +218,13 @@ h5 {
 }
 
 .box-header.menu-is-open {
-    background-color: rgba(255, 255, 255, 0.96);
+    /* background-color: rgba(255, 255, 255, 0.96); */
 }
 
 .box-logo {
     display: block;
     padding: 20px;
+    font-size: 40px;
 }
 
 .box-primary-nav-trigger {
@@ -385,13 +386,13 @@ h5 {
     color: #4C5C97;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 24px;
     margin: 2.4em 0 .8em;
 }
 
 .box-primary-nav .box-social {
     display: inline-block;
-    margin: 10px .4em;
+    margin: 0em .4em;
 }
 
 .box-primary-nav .box-social a {
