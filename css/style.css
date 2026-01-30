@@ -443,6 +443,7 @@ b i:first-child {
 
 b i:nth-child(2) {
     color: #4C5C97 !important;
+    opacity: 0.85 !important;
 }
 
 .box-intro h5 {
