@@ -846,7 +846,7 @@ b i:nth-child(4) {
 footer {
     padding: 30px 0;
     text-align: center;
-    background: #f5f5f5
+    background: transparent;
 }
 
 .copyright {
