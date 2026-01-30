@@ -1,0 +1,917 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clarence Wallace — Fullstack Developer</title>
+  <meta name="description" content="Clarence Wallace — Fullstack Developer portfolio" />
+
+  <style>
+    :root{
+      --bg0:#05070f;
+      --bg1:#091327;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.60);
+      --line:rgba(255,255,255,.12);
+
+      --panel: rgba(0,0,0,.45);
+      --panel2: rgba(0,0,0,.32);
+      --chip: rgba(255,255,255,.05);
+      --chip2: rgba(255,255,255,.08);
+
+      --dock: rgba(0,0,0,.48);
+      --dockBorder: rgba(255,255,255,.14);
+      --shadow: 0 22px 90px rgba(0,0,0,.55);
+
+      --max: 1080px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.06), transparent 65%),
+        radial-gradient(900px 500px at 55% 80%, rgba(255,255,255,.03), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      overflow-x:hidden;
+    }
+
+    /* background layers */
+    .layer{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+    }
+    #stars{z-index:0}
+    #shooters{z-index:1}
+
+    .fog{
+      z-index:2;
+      background:
+        radial-gradient(1000px 420px at 50% 12%, rgba(255,255,255,.11), transparent 62%),
+        radial-gradient(760px 360px at 30% 48%, rgba(255,255,255,.06), transparent 62%),
+        radial-gradient(760px 360px at 70% 52%, rgba(255,255,255,.06), transparent 62%),
+        radial-gradient(1100px 520px at 50% 92%, rgba(255,255,255,.05), transparent 62%);
+      filter: blur(18px);
+      opacity:.55;
+      mix-blend-mode: screen;
+      animation: fogDrift 10s ease-in-out infinite alternate;
+      transform: translate3d(0,0,0);
+    }
+    @keyframes fogDrift{
+      0%{transform: translateY(-7px)}
+      100%{transform: translateY(10px)}
+    }
+
+    /* layout */
+    .wrap{
+      position:relative;
+      z-index:3;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .container{
+      width:min(var(--max), 92vw);
+      margin:0 auto;
+    }
+
+    /* top name (sci-fi-ish) */
+    .top-name{
+      margin-top: 26px;
+      font-weight: 950;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: clamp(24px, 3.4vw, 44px);
+      line-height:1;
+      opacity:.93;
+      user-select:none;
+      filter: drop-shadow(0 12px 28px rgba(0,0,0,.55));
+      text-align:center;
+    }
+    .top-name span{
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+    }
+
+    /* hero */
+    .hero{
+      min-height: calc(100vh - 120px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 40px 0 130px;
+      position:relative;
+    }
+    .hero h1{
+      margin:0 0 14px;
+      font-size: clamp(28px, 4.2vw, 54px);
+      letter-spacing:-.02em;
+      text-shadow: 0 24px 60px rgba(0,0,0,.55);
+      animation: rise .85s ease-out both;
+    }
+    .hero p{
+      margin:0 auto 22px;
+      max-width: 70ch;
+      color: var(--muted);
+      font-size: clamp(14px, 1.35vw, 18px);
+      line-height:1.6;
+      text-shadow: 0 20px 45px rgba(0,0,0,.55);
+      animation: rise .85s ease-out .08s both;
+    }
+    @keyframes rise{
+      from{opacity:0; transform: translateY(16px)}
+      to{opacity:1; transform: translateY(0)}
+    }
+
+    .actions{
+      display:flex;
+      gap: 14px;
+      justify-content:center;
+      margin-bottom: 18px;
+      flex-wrap:wrap;
+      animation: rise .85s ease-out .14s both;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.40));
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing:.02em;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:-50% -60%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+      transform: translateX(-55%) rotate(12deg);
+      opacity:0;
+      transition: opacity .2s ease;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.24);
+      background: linear-gradient(180deg, rgba(0,0,0,.62), rgba(0,0,0,.44));
+    }
+    .btn:hover::after{ opacity:1; animation: shine 1s ease both; }
+    @keyframes shine{
+      from{ transform: translateX(-60%) rotate(12deg) }
+      to{ transform: translateX(60%) rotate(12deg) }
+    }
+
+    /* tech row */
+    .tech-row{
+      display:flex;
+      gap: 14px;
+      justify-content:center;
+      align-items:center;
+      opacity:.92;
+      animation: rise .85s ease-out .22s both;
+    }
+    .tech{
+      width: 28px;
+      height: 28px;
+      display:grid;
+      place-items:center;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .tech:hover{
+      transform: translateY(-2px) scale(1.06);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+    }
+    .tech svg{width:18px;height:18px;opacity:.92}
+
+    .center-line{
+      width:2px;
+      height: 94px;
+      background: linear-gradient(180deg, rgba(255,255,255,.0), rgba(255,255,255,.22), rgba(255,255,255,.0));
+      margin: 18px auto 0;
+      opacity:.55;
+      animation: rise .85s ease-out .30s both;
+    }
+
+    /* Work / Projects section (matches recording: big gallery cards, soft blur edges, dock stays) */
+    section#work{
+      padding: 40px 0 180px;
+      width: 100%;
+    }
+    .work-frame{
+      margin: 0 auto;
+      width: min(1180px, 94vw);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 85px rgba(0,0,0,.45);
+      overflow: hidden;
+      position:relative;
+    }
+    .work-frame::before,
+    .work-frame::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width: 120px;
+      z-index:2;
+      pointer-events:none;
+    }
+    .work-frame::before{
+      left:0;
+      background: linear-gradient(90deg, rgba(0,0,0,.62), transparent);
+    }
+    .work-frame::after{
+      right:0;
+      background: linear-gradient(270deg, rgba(0,0,0,.62), transparent);
+    }
+
+    .work-scroll{
+      display:flex;
+      gap: 18px;
+      padding: 22px;
+      overflow:auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 22px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.22) rgba(255,255,255,.08);
+    }
+    .work-scroll::-webkit-scrollbar{height:10px}
+    .work-scroll::-webkit-scrollbar-track{background: rgba(255,255,255,.06); border-radius:999px}
+    .work-scroll::-webkit-scrollbar-thumb{background: rgba(255,255,255,.18); border-radius:999px}
+
+    .project{
+      scroll-snap-align: start;
+      width: min(860px, 86vw);
+      min-height: 460px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.25fr .9fr;
+    }
+    .proj-left{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(420px 240px at 30% 30%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .proj-left .mock{
+      position:absolute;
+      inset:0;
+      background-size: cover;
+      background-position:center;
+      filter: saturate(110%) contrast(105%);
+      transform: scale(1.03);
+    }
+    .proj-left .overlay{
+      position:absolute;
+      inset:0;
+      background: radial-gradient(700px 280px at 50% 30%, rgba(0,0,0,.10), rgba(0,0,0,.55));
+    }
+
+    .proj-right{
+      padding: 18px 18px 18px;
+      background: linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.25));
+      border-left: 1px solid rgba(255,255,255,.10);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap: 12px;
+    }
+    .proj-title{
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing:-.01em;
+      margin:0;
+    }
+    .proj-desc{
+      margin:0;
+      color: rgba(255,255,255,.68);
+      line-height:1.6;
+      font-size: 14px;
+    }
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .pill{
+      font-size: 12px;
+      font-weight: 800;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.84);
+      backdrop-filter: blur(10px);
+    }
+    .proj-links{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 6px;
+    }
+    .plink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 850;
+      font-size: 13px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .plink:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* Dock (bottom bar) */
+    .dock{
+      position: fixed;
+      z-index: 20;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display:flex;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(0,0,0,.52), rgba(0,0,0,.38));
+      border: 1px solid var(--dockBorder);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .dock-item{
+      position:relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      color: var(--text);
+      text-decoration:none;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+      overflow:hidden;
+      user-select:none;
+    }
+    .dock-item svg{width:18px;height:18px;opacity:.92}
+
+    /* macOS-like magnification */
+    .dock-item.hover{
+      transform: translateY(-6px) scale(1.18);
+      border-color: rgba(255,255,255,.24);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* tooltip */
+    .tip{
+      position:absolute;
+      left:50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%) translateY(6px);
+      opacity:0;
+      pointer-events:none;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.45);
+      transition: opacity .12s ease, transform .12s ease;
+      white-space:nowrap;
+    }
+    .dock-item.hover .tip{
+      opacity:1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Rocket cursor (follows mouse; snaps above dock item on hover) */
+    .rocket-cursor{
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 54px;
+      height: 54px;
+      z-index: 30;
+      pointer-events: none;
+      transform: translate(-999px,-999px);
+      filter: drop-shadow(0 16px 18px rgba(0,0,0,.35));
+      transition: transform .06s linear;
+      opacity: 0;
+    }
+    .rocket-cursor.show{opacity:1}
+    .rocket-cursor svg{width:100%;height:100%}
+
+    /* hide system cursor on desktop (matches the “rocket next to pointer” feel) */
+    @media (hover:hover) and (pointer:fine){
+      body{cursor:none}
+      a, button, .dock-item, .btn, .plink { cursor:none }
+    }
+
+    @media (max-width: 640px){
+      .project{grid-template-columns:1fr; min-height: 540px}
+      .proj-right{border-left:none;border-top:1px solid rgba(255,255,255,.10)}
+      .work-frame::before,.work-frame::after{width: 70px}
+      .rocket-cursor{display:none}
+      body{cursor:auto}
+      a, button {cursor:pointer}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .fog{animation:none}
+      html{scroll-behavior:auto}
+      .dock-item,.btn,.plink{transition:none}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- background -->
+  <canvas id="stars" class="layer"></canvas>
+  <canvas id="shooters" class="layer"></canvas>
+  <div class="layer fog"></div>
+
+  <!-- rocket cursor -->
+  <div class="rocket-cursor" id="rocketCursor" aria-hidden="true">
+    <svg viewBox="0 0 64 64">
+      <defs>
+        <linearGradient id="rb" x1="0" x2="1">
+          <stop offset="0" stop-color="#ffcc66"/>
+          <stop offset="1" stop-color="#ff7a59"/>
+        </linearGradient>
+        <linearGradient id="rs" x1="0" x2="1">
+          <stop offset="0" stop-color="#cfd8ff"/>
+          <stop offset="1" stop-color="#ffffff"/>
+        </linearGradient>
+      </defs>
+      <path d="M42 10c8 8 10 18 7 30-12 3-22 1-30-7 2-9 10-18 23-23z" fill="url(#rs)" opacity=".95"/>
+      <path d="M38 14c6 6 7 13 5 22-9 2-16 1-22-5 2-7 8-13 17-17z" fill="#c7d2fe" opacity=".75"/>
+      <circle cx="38" cy="26" r="5.6" fill="#0b1222" opacity=".9"/>
+      <circle cx="38" cy="26" r="3.2" fill="#7dd3fc" opacity=".9"/>
+      <path d="M20 36l-7 7 10 2z" fill="#93c5fd" opacity=".85"/>
+      <path d="M28 44l-6 10 7-2 5-6z" fill="#93c5fd" opacity=".85"/>
+      <path d="M22 40c-2 5-2 9 2 13 5-4 8-8 9-13-4 2-7 2-11 0z" fill="url(#rb)" opacity=".95"/>
+      <path d="M22 42c-1.2 3-1 5 1.2 7.6 2.8-2.5 4.4-4.6 5.2-7.4-2.3 1-4.2 1-6.4-.2z" fill="#ffd166" opacity=".95"/>
+    </svg>
+  </div>
+
+  <div class="wrap" id="top">
+    <div class="top-name"><span>CLARENCE WALLACE</span></div>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Hi, I’m Clarence — Fullstack Developer</h1>
+        <p>I create functional, scalable, and user-friendly applications to solve real problems.</p>
+
+        <div class="actions">
+          <a class="btn" href="#work">View My Work</a>
+          <a class="btn" href="#resume" onclick="alert('Replace with your resume PDF link'); return false;">View My Resume</a>
+        </div>
+
+        <div class="tech-row" aria-label="Tech icons">
+          <div class="tech" title="TypeScript" aria-label="TypeScript">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 3h18v18H3V3z" stroke="white" opacity=".9"/>
+              <path d="M8 9h8M12 9v9" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+            </svg>
+          </div>
+          <div class="tech" title="React" aria-label="React">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="1.8" fill="white" opacity=".9"/>
+              <path d="M12 4c4 0 7 3.6 7 8s-3 8-7 8-7-3.6-7-8 3-8 7-8z" stroke="white" opacity=".5"/>
+              <path d="M6 8c2-3 7-4 11-2 4 2 5 7 3 11" stroke="white" opacity=".6"/>
+              <path d="M18 8c-2-3-7-4-11-2-4 2-5 7-3 11" stroke="white" opacity=".6"/>
+            </svg>
+          </div>
+          <div class="tech" title="Node.js" aria-label="Node.js">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3l7.5 4.3v9.4L12 21l-7.5-4.3V7.3L12 3z" stroke="white" opacity=".9"/>
+              <path d="M10 10.5v6" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+              <path d="M14 10.5c1.2 0 2 .9 2 2v4" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+            </svg>
+          </div>
+          <div class="tech" title="APIs" aria-label="APIs">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 7h12M6 12h12M6 17h12" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+              <path d="M4 7h.01M4 12h.01M4 17h.01" stroke="white" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+            </svg>
+          </div>
+          <div class="tech" title="Databases" aria-label="Databases">
+            <svg viewBox="0 0 24 24" fill="none">
+              <ellipse cx="12" cy="6.5" rx="7" ry="3" stroke="white" opacity=".9"/>
+              <path d="M5 6.5v11c0 1.7 3.1 3 7 3s7-1.3 7-3v-11" stroke="white" opacity=".9"/>
+              <path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" stroke="white" opacity=".6"/>
+            </svg>
+          </div>
+          <div class="tech" title="iOS / Apple" aria-label="Apple">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M16.6 13.2c0 3.4 2.9 4.5 2.9 4.5s-2.2 6.1-5.2 6.1c-1.4 0-2.5-.9-3.9-.9s-2.7.9-3.9.9c-2.7 0-5.6-5.7-5.6-10.2 0-4 2.5-6.1 5-6.1 1.6 0 2.9 1 3.9 1s2.6-1.2 4.5-1c.7 0 2.7.3 4 2.1-3.2 1.8-2.7 5.5-1.7 6.5z" stroke="white" opacity=".9"/>
+              <path d="M14.6 2.3c.2 1.4-.5 2.8-1.4 3.7-.9.9-2.3 1.6-3.6 1.5-.2-1.4.6-2.8 1.5-3.7.9-.9 2.4-1.6 3.5-1.5z" stroke="white" opacity=".7"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="center-line" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="container" style="text-align:center; margin-bottom: 18px;">
+        <div style="color: rgba(255,255,255,.70); font-weight: 900; letter-spacing:.08em; text-transform:uppercase;">
+          Work
+        </div>
+      </div>
+
+      <div class="work-frame" aria-label="Project gallery">
+        <div class="work-scroll" id="workScroll">
+          <!-- Project 1 -->
+          <article class="project">
+            <div class="proj-left">
+              <div class="mock" style="background-image:
+                radial-gradient(800px 360px at 30% 30%, rgba(0,0,0,.10), rgba(0,0,0,.65)),
+                url('https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1400&q=80');">
+              </div>
+              <div class="overlay"></div>
+            </div>
+            <div class="proj-right">
+              <h3 class="proj-title">Data Dashboard</h3>
+              <p class="proj-desc">A clean analytics UI with charts, filtering, and performance-minded rendering.</p>
+              <div class="pillrow">
+                <span class="pill">TypeScript</span><span class="pill">React</span><span class="pill">SQL</span>
+              </div>
+              <div class="proj-links">
+                <a class="plink" href="#" onclick="alert('Replace with live link');return false;">Live</a>
+                <a class="plink" href="#" onclick="alert('Replace with GitHub link');return false;">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project">
+            <div class="proj-left">
+              <div class="mock" style="background-image:
+                radial-gradient(800px 360px at 30% 30%, rgba(0,0,0,.10), rgba(0,0,0,.65)),
+                url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1400&q=80');">
+              </div>
+              <div class="overlay"></div>
+            </div>
+            <div class="proj-right">
+              <h3 class="proj-title">Mobile Product UI</h3>
+              <p class="proj-desc">A modern mobile experience with crisp typography and “feels good” interactions.</p>
+              <div class="pillrow">
+                <span class="pill">UI/UX</span><span class="pill">React</span><span class="pill">APIs</span>
+              </div>
+              <div class="proj-links">
+                <a class="plink" href="#" onclick="alert('Replace with case study link');return false;">Case Study</a>
+                <a class="plink" href="#" onclick="alert('Replace with GitHub link');return false;">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project">
+            <div class="proj-left">
+              <div class="mock" style="background-image:
+                radial-gradient(800px 360px at 30% 30%, rgba(0,0,0,.10), rgba(0,0,0,.65)),
+                url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1400&q=80');">
+              </div>
+              <div class="overlay"></div>
+            </div>
+            <div class="proj-right">
+              <h3 class="proj-title">AI Tooling Prototype</h3>
+              <p class="proj-desc">A prototype for automation + workflows, designed to be simple and fast.</p>
+              <div class="pillrow">
+                <span class="pill">Node</span><span class="pill">APIs</span><span class="pill">Automation</span>
+              </div>
+              <div class="proj-links">
+                <a class="plink" href="#" onclick="alert('Replace with live link');return false;">Live</a>
+                <a class="plink" href="#" onclick="alert('Replace with GitHub link');return false;">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project">
+            <div class="proj-left">
+              <div class="mock" style="background-image:
+                radial-gradient(800px 360px at 30% 30%, rgba(0,0,0,.10), rgba(0,0,0,.65)),
+                url('https://images.unsplash.com/photo-1520975958225-45c9773f08f6?auto=format&fit=crop&w=1400&q=80');">
+              </div>
+              <div class="overlay"></div>
+            </div>
+            <div class="proj-right">
+              <h3 class="proj-title">AR Systems (WIP)</h3>
+              <p class="proj-desc">AR gameplay + systems work: anchors, effects, haptics, and performance tuning.</p>
+              <div class="pillrow">
+                <span class="pill">Unity</span><span class="pill">C#</span><span class="pill">AR</span>
+              </div>
+              <div class="proj-links">
+                <a class="plink" href="#" onclick="alert('Replace with demo video link');return false;">Demo</a>
+                <a class="plink" href="#" onclick="alert('Replace with devlog link');return false;">Devlog</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- DOCK -->
+  <nav class="dock" aria-label="Quick navigation">
+    <a class="dock-item" href="#top" data-tip="Home">
+      <span class="tip">Home</span>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M3 11.5l9-7 9 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+        <path d="M6.5 10.5V20h11V10.5" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+      </svg>
+    </a>
+
+    <a class="dock-item" href="#work" data-tip="Work">
+      <span class="tip">Work</span>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M8 7V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="white" stroke-width="2" opacity=".9"/>
+        <path d="M4 9h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9z" stroke="white" stroke-width="2" opacity=".9"/>
+      </svg>
+    </a>
+
+    <a class="dock-item" href="#resume" data-tip="Resume" onclick="alert('Replace with your resume PDF link');return false;">
+      <span class="tip">Resume</span>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M7 3h7l3 3v15H7V3z" stroke="white" stroke-width="2" opacity=".9"/>
+        <path d="M14 3v4h4" stroke="white" stroke-width="2" opacity=".9"/>
+        <path d="M9 11h6M9 15h6" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+      </svg>
+    </a>
+
+    <a class="dock-item" href="#" data-tip="LinkedIn" onclick="alert('Replace with your LinkedIn URL');return false;">
+      <span class="tip">LinkedIn</span>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M6 9v10" stroke="white" stroke-width="2" opacity=".9"/>
+        <path d="M6 6.2h.01" stroke="white" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+        <path d="M10 19v-6.2c0-1.6 1-2.8 2.6-2.8s2.4 1.1 2.4 2.9V19" stroke="white" stroke-width="2" opacity=".9"/>
+        <path d="M10 9v10" stroke="white" stroke-width="2" opacity=".9"/>
+      </svg>
+    </a>
+
+    <a class="dock-item" href="#" data-tip="GitHub" onclick="alert('Replace with your GitHub URL');return false;">
+      <span class="tip">GitHub</span>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M9 19c-4 1.5-4-2.5-5-3" stroke="white" stroke-width="2" opacity=".9"/>
+        <path d="M15 19v-3.1c0-.8.3-1.4.8-1.8 2.7-.3 5.5-1.3 5.5-6a4.7 4.7 0 0 0-1.3-3.3 4.3 4.3 0 0 0-.1-3.3s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C7.9 1.2 6.9 1.5 6.9 1.5a4.3 4.3 0 0 0-.1 3.3A4.7 4.7 0 0 0 5.5 8c0 4.7 2.8 5.7 5.5 6 .5.4.8 1 .8 1.8V19" stroke="white" stroke-width="2" opacity=".9"/>
+      </svg>
+    </a>
+  </nav>
+
+  <script>
+    // =========================
+    // Starfield + shooting stars
+    // =========================
+    const starCanvas = document.getElementById('stars');
+    const sctx = starCanvas.getContext('2d');
+    const shootCanvas = document.getElementById('shooters');
+    const shctx = shootCanvas.getContext('2d');
+
+    function resize(){
+      const dpr = devicePixelRatio || 1;
+      starCanvas.width = innerWidth * dpr;
+      starCanvas.height = innerHeight * dpr;
+      starCanvas.style.width = innerWidth + 'px';
+      starCanvas.style.height = innerHeight + 'px';
+
+      shootCanvas.width = innerWidth * dpr;
+      shootCanvas.height = innerHeight * dpr;
+      shootCanvas.style.width = innerWidth + 'px';
+      shootCanvas.style.height = innerHeight + 'px';
+
+      sctx.setTransform(dpr,0,0,dpr,0,0);
+      shctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    addEventListener('resize', resize, {passive:true});
+    resize();
+
+    const W = () => innerWidth;
+    const H = () => innerHeight;
+
+    const STAR_COUNT = Math.round(Math.min(320, Math.max(160, (W()*H())/8500)));
+    const stars = Array.from({length: STAR_COUNT}, () => ({
+      x: Math.random()*W(),
+      y: Math.random()*H(),
+      r: Math.random()*1.4 + 0.25,
+      a: Math.random()*0.65 + 0.15,
+      tw: Math.random()*0.9 + 0.3,
+      sp: Math.random()*0.10 + 0.02
+    }));
+
+    let mx = 0, my = 0;
+    addEventListener('pointermove', (e) => {
+      mx = (e.clientX / W() - 0.5);
+      my = (e.clientY / H() - 0.5);
+    }, {passive:true});
+
+    function drawStars(t){
+      sctx.clearRect(0,0,W(),H());
+
+      // soft vignette
+      const g = sctx.createRadialGradient(W()/2, H()/2, 0, W()/2, H()/2, Math.max(W(),H())*0.7);
+      g.addColorStop(0, 'rgba(255,255,255,0.04)');
+      g.addColorStop(1, 'rgba(0,0,0,0.58)');
+      sctx.fillStyle = g;
+      sctx.fillRect(0,0,W(),H());
+
+      for(const st of stars){
+        const tw = 0.35 + 0.65*(0.5 + 0.5*Math.sin((t/1000)*st.tw + st.x*0.02));
+        const alpha = st.a * tw;
+
+        const px = st.x + mx * 10 * st.sp;
+        const py = st.y + my * 10 * st.sp;
+
+        sctx.beginPath();
+        sctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        sctx.arc(px, py, st.r, 0, Math.PI*2);
+        sctx.fill();
+      }
+    }
+
+    const shooters = [];
+    function spawnShooter(){
+      const startX = Math.random()*W();
+      const startY = Math.random()*H()*0.55;
+      const speed = 11 + Math.random()*6;
+      const angle = Math.PI * (0.80 + Math.random()*0.08); // down-right
+      shooters.push({
+        x: startX,
+        y: startY,
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed,
+        life: 0,
+        maxLife: 22 + Math.random()*16,
+      });
+    }
+
+    let lastSpawn = 0;
+    function drawShooters(t){
+      shctx.clearRect(0,0,W(),H());
+
+      if(t - lastSpawn > 1800 + Math.random()*2400){
+        lastSpawn = t;
+        if(Math.random() < 0.78) spawnShooter();
+      }
+
+      for(let i = shooters.length-1; i>=0; i--){
+        const s = shooters[i];
+        s.life++;
+        s.x += s.vx;
+        s.y += s.vy;
+
+        const p = s.life / s.maxLife;
+        const alpha = Math.max(0, 1 - p);
+        const tx = s.x - s.vx * 14;
+        const ty = s.y - s.vy * 14;
+
+        shctx.strokeStyle = `rgba(255,255,255,${0.35*alpha})`;
+        shctx.lineWidth = 2;
+        shctx.lineCap = 'round';
+        shctx.beginPath();
+        shctx.moveTo(s.x, s.y);
+        shctx.lineTo(tx, ty);
+        shctx.stroke();
+
+        shctx.fillStyle = `rgba(255,255,255,${0.55*alpha})`;
+        shctx.beginPath();
+        shctx.arc(s.x, s.y, 2.2, 0, Math.PI*2);
+        shctx.fill();
+
+        if(s.life > s.maxLife) shooters.splice(i,1);
+      }
+    }
+
+    function loop(t){
+      drawStars(t);
+      drawShooters(t);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    // =========================
+    // Rocket cursor + dock hover behavior (matches recording)
+    // =========================
+    const rocket = document.getElementById('rocketCursor');
+    let targetX = -999, targetY = -999;
+    let curX = -999, curY = -999;
+
+    let dockMode = false; // when hovering a dock item, rocket "snaps" above it
+
+    function animateRocket(){
+      // smooth follow
+      curX += (targetX - curX) * 0.18;
+      curY += (targetY - curY) * 0.18;
+
+      // tiny bob
+      const bob = Math.sin(Date.now()/180) * 2;
+
+      rocket.style.transform = `translate(${curX}px, ${curY + bob}px) rotate(-18deg)`;
+      requestAnimationFrame(animateRocket);
+    }
+    requestAnimationFrame(animateRocket);
+
+    // show rocket after first move (desktop)
+    let rocketShown = false;
+    addEventListener('pointermove', (e) => {
+      if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+        if (!rocketShown) { rocket.classList.add('show'); rocketShown = true; }
+        if (!dockMode) {
+          targetX = e.clientX + 14; // offset like recording (rocket near cursor)
+          targetY = e.clientY + 8;
+        }
+      }
+    }, {passive:true});
+
+    // Dock magnification + rocket snap above hovered icon + tooltip
+    const dockItems = Array.from(document.querySelectorAll('.dock-item'));
+
+    function clearDockHover(){
+      dockItems.forEach(it => it.classList.remove('hover'));
+      dockMode = false;
+    }
+
+    dockItems.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        dockItems.forEach(it => it.classList.remove('hover'));
+        item.classList.add('hover');
+
+        // snap rocket above this item
+        const r = item.getBoundingClientRect();
+        dockMode = true;
+
+        // rocket position: centered above the icon, similar to recording
+        targetX = r.left + r.width/2 - 16;
+        targetY = r.top - 58;
+      });
+
+      item.addEventListener('mouseleave', () => {
+        item.classList.remove('hover');
+        dockMode = false;
+      });
+    });
+
+    // When leaving the dock area completely, stop dock mode
+    const dock = document.querySelector('.dock');
+    dock.addEventListener('mouseleave', () => clearDockHover());
+
+    // =========================
+    // Smooth horizontal scroll with mouse wheel inside Work gallery
+    // (feels like the recording)
+    // =========================
+    const workScroll = document.getElementById('workScroll');
+    workScroll.addEventListener('wheel', (e) => {
+      // convert vertical wheel to horizontal scroll
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        workScroll.scrollLeft += e.deltaY;
+      }
+    }, {passive:false});
+  </script>
+</body>
+</html>
