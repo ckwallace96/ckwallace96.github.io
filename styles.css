@@ -502,4 +502,8 @@ code{ color: rgba(255,255,255,.8); font-family: ui-monospace, SFMono-Regular, Me
     left: 0 !important;
     width: 100% !important;
   }
+
+  .top-logo{
+    display: none;
+  }
 }
