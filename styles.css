@@ -47,6 +47,7 @@ body{
 }
 
 .top-logo{
+  display: none !important;
   position:fixed;
   top:18px;
   left:0;
