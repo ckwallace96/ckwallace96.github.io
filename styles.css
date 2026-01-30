@@ -51,11 +51,21 @@ body{
   top:18px;
   left:0;
   right:0;
+  font-size: 24px;
+  color: white;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  padding-left: 24px;
   display:flex;
-  justify-content:center;
+  /* justify-content:center; */
   z-index:20;
   pointer-events:none;
 }
+
+.top-logo > .accent {
+  color: #727eaa;
+}
+
 .logo{
   font-family: Orbitron, Inter, system-ui, sans-serif;
   letter-spacing:.38em;
@@ -437,6 +447,13 @@ code{ color: rgba(255,255,255,.8); font-family: ui-monospace, SFMono-Regular, Me
   transform: translateX(-50%) translateY(-4px);
 }
 
+@media (min-width: 760px) and (max-width: 1080px){
+  .box-primary-nav {
+    left: 0 !important;
+    width: 100% !important;
+  }
+}
+
 /* mobile */
 @media (max-width: 760px){
   .logo{ font-size: 28px; letter-spacing:.28em; padding-left:.28em; }
@@ -480,5 +497,9 @@ code{ color: rgba(255,255,255,.8); font-family: ui-monospace, SFMono-Regular, Me
   }
   .tech-row {
     display: none;
+  }
+  .box-primary-nav {
+    left: 0 !important;
+    width: 100% !important;
   }
 }

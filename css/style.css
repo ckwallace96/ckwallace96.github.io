@@ -330,10 +330,10 @@ h5 {
 
 .box-primary-nav {
     position: fixed;
-    left: 0;
+    left: 82%;
     top: 0;
     height: 100%;
-    width: 100%;
+    width: 18%;
     background: rgba(0, 0, 0, 0.96);
     z-index: 2;
     text-align: center;
@@ -1197,3 +1197,4 @@ textarea:focus {
         line-height: 30px;
     }
 }
+

@@ -60,7 +60,7 @@
     acc += dt;
 
     // probabilistic spawn at STREAK_RATE
-    if (Math.random() < (STREAK_RATE * dt)) spawnStreak();
+    // if (Math.random() < (STREAK_RATE * dt)) spawnStreak();
 
     ctx.clearRect(0, 0, W, H);
 
