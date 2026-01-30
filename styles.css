@@ -3,7 +3,7 @@
   --bg0:#0b0e14;
   --bg1:#0e141f;
   --text:rgba(255,255,255,.92);
-  --muted:rgba(255,255,255,.55);
+  --muted:#90A1B9;
   --muted2:rgba(255,255,255,.40);
   --panel:rgba(18,22,30,.72);
   --panel2:rgba(18,22,30,.55);
@@ -133,7 +133,7 @@ h1{
   place-items:center;
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 6px;
-  background: rgba(0,0,0,.24);
+  /* background: rgba(0,0,0,.24); */
   color: rgba(255,255,255,.9);
   font-size: 11px;
   font-weight:800;
