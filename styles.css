@@ -57,7 +57,7 @@ body{
   font-weight: 700;
   padding-left: 24px;
   display:flex;
-  /* justify-content:center; */
+  justify-content: start;
   z-index:20;
   pointer-events:none;
 }
