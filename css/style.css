@@ -441,9 +441,9 @@ b i:first-child {
     opacity: 0.85 !important;
 }
 
-/* b i:nth-child(2) {
+b i:nth-child(2) {
     color: #4C5C97 !important;
-} */
+}
 
 .box-intro h5 {
     letter-spacing: 4px;
