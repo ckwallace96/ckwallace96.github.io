@@ -367,7 +367,7 @@ code{ color: rgba(255,255,255,.8); font-family: ui-monospace, SFMono-Regular, Me
 .footer{
   padding: 20px 0 120px;
   text-align:center;
-  color: var(--muted2);
+  /* color: var(--muted2); */
 }
 
 /* ===== Floating Dock (magnifies like mac) ===== */
