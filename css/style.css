@@ -546,23 +546,23 @@ b i:nth-child(4) {
 .box-headline {
     font-size: 130px;
     line-height: 1.0;
+    text-align: center;
 }
 
 .box-words-wrapper {
     display: inline-block;
     position: relative;
+    text-align: center;
 }
 
 .box-words-wrapper b {
     display: inline-block;
     position: absolute;
     white-space: nowrap;
-    left: 0;
     top: 0;
-}
-
-.box-words-wrapper b:last-of-type {
-    left: 4vw !important;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
 }
 
 .box-words-wrapper b.is-visible {
