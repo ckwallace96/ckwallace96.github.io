@@ -561,6 +561,10 @@ b i:nth-child(4) {
     top: 0;
 }
 
+.box-words-wrapper b:last-of-type {
+    left: 32px !important;
+}
+
 .box-words-wrapper b.is-visible {
     position: relative;
 }
