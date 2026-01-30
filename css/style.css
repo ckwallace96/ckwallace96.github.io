@@ -85,7 +85,7 @@ a {
 ==================================================*/
 
 h1 {
-    color:  rgba(255,255,255,.7);
+    color:  rgba(255,255,255,.85);
 }
 
 h3 {
@@ -438,6 +438,7 @@ h5 {
 
 b i:first-child {
     color: #4C5C97 !important;
+    opacity: 0.85 !important;
 }
 
 /* b i:nth-child(2) {
