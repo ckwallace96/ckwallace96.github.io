@@ -228,3 +228,154 @@
   window.addEventListener('resize', updateScrollThumb, { passive: true });
   updateScrollThumb();
 })();
+
+const qs = (s, el=document) => el.querySelector(s);
+const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+// Smooth scrolling (native + reduced motion)
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+qsa('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = qs(href);
+    if (!target) return;
+    e.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - 78;
+    window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
+    closeDrawer();
+  });
+});
+
+// Mobile drawer
+const drawer = qs('#drawer');
+const navToggle = qs('#navToggle');
+function openDrawer(){
+  if (!drawer || !navToggle) return;
+  drawer.classList.add('is-open');
+  drawer.setAttribute('aria-hidden','false');
+  navToggle.setAttribute('aria-expanded','true');
+}
+function closeDrawer(){
+  if (!drawer || !navToggle) return;
+  drawer.classList.remove('is-open');
+  drawer.setAttribute('aria-hidden','true');
+  navToggle.setAttribute('aria-expanded','false');
+}
+navToggle?.addEventListener('click', () => {
+  if (drawer?.classList.contains('is-open')) closeDrawer();
+  else openDrawer();
+});
+window.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeDrawer(); closeModal(); } });
+window.addEventListener('click', (e) => {
+  if (!drawer || !navToggle) return;
+  const t = e.target;
+  if (drawer.classList.contains('is-open') && !drawer.contains(t) && !navToggle.contains(t)) closeDrawer();
+});
+
+// Ticker marquee
+const ticker = qs('#tickerTrack');
+let tickerX = 0;
+function tickTicker(){
+  if (!ticker || prefersReduced) return;
+  tickerX -= 0.5;
+  ticker.style.transform = `translateX(${tickerX}px)`;
+  // Reset when half scrolled (content duplicated in HTML)
+  const w = ticker.scrollWidth / 2;
+  if (-tickerX >= w) tickerX = 0;
+  requestAnimationFrame(tickTicker);
+}
+requestAnimationFrame(tickTicker);
+
+// Scrollspy
+const spyLinks = qsa('[data-spy]');
+const spyMap = new Map(spyLinks.map(a => [a.getAttribute('href'), a]));
+const sections = qsa('section.section').map(s => ({ id: `#${s.id}`, el: s }));
+
+const spyObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const id = `#${entry.target.id}`;
+    spyLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === id));
+  });
+}, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+sections.forEach(s => spyObs.observe(s.el));
+
+// Reveal on scroll
+const reveals = qsa('.reveal');
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('is-in');
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => revObs.observe(el));
+
+// Modal
+const modal = qs('#modal');
+const modalBody = qs('#modalBody');
+const modalClose = qs('#modalClose');
+const modalBackdrop = qs('#modalBackdrop');
+
+const PROJECTS = {
+  p1: {
+    title: 'Voranty',
+    text: 'Finance product UI + API integrations. Clean dashboards, fast tables, and sharp interactions.',
+    chips: ['React', 'TypeScript', 'Node', 'Charts']
+  },
+  p2: {
+    title: 'DashStack',
+    text: 'Admin console with multi-tenant UX patterns, role-based access, and performance-focused UI.',
+    chips: ['Next.js', 'Postgres', 'Prisma', 'Auth']
+  },
+  p3: {
+    title: 'Portal Runner',
+    text: 'AR prototype with game loops, anchors, and mobile-friendly 3D performance constraints.',
+    chips: ['Unity', 'ARKit', 'C#', 'iOS']
+  },
+  p4: {
+    title: 'BigQuery Canvas',
+    text: 'Data exploration UX: responsive layout, complex state, and high signal visual polish.',
+    chips: ['Angular/TS', 'Data', 'Performance', 'UI Systems']
+  }
+};
+
+function openModal(key){
+  if (!modal || !modalBody) return;
+  const p = PROJECTS[key];
+  if (!p) return;
+
+  modalBody.innerHTML = `
+    <h3>${escapeHtml(p.title)}</h3>
+    <p>${escapeHtml(p.text)}</p>
+    <div class="chips">${p.chips.map(c => `<span class="chip">${escapeHtml(c)}</span>`).join('')}</div>
+  `;
+
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+qsa('.work-card').forEach(card => {
+  card.addEventListener('click', () => openModal(card.dataset.modal));
+});
+modalClose?.addEventListener('click', closeModal);
+modalBackdrop?.addEventListener('click', closeModal);
+
+function escapeHtml(str){
+  return String(str)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'",'&#039;');
+}

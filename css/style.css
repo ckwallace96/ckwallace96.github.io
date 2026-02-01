@@ -10,6 +10,11 @@
   --panel2:rgba(18,22,30,.55);
   --border:rgba(255,255,255,.10);
   --shadow: 0 25px 70px rgba(0,0,0,.55);
+
+  --fg:rgba(255,255,255,.92);
+  --line:rgba(255,255,255,.14);
+  --blur:18px;
+  --accent:rgba(140,240,255,.9);
 }
 
 *{box-sizing:border-box}
@@ -806,11 +811,11 @@ h5 {
 
 .box-primary-nav {
     position: fixed;
-    left: 82%;
+    left: 84%;
     top: 0;
     height: 100%;
-    width: 18%;
-    background: rgba(0, 0, 0, 0.96);
+    width: 16%;
+    background: rgba(0, 0, 0, 0.5);
     z-index: 2;
     text-align: center;
     padding: 50px 0;
@@ -859,10 +864,10 @@ h5 {
 }
 
 .box-primary-nav .box-label {
-    color: #4C5C97;
+    color: white;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 28px;
     margin: 2.4em 0 .8em;
 }
 
@@ -884,7 +889,7 @@ h5 {
 }
 
 .box-primary-nav {
-    padding: 150px 0 0;
+    padding: 24vh 0;
 }
 
 .box-primary-nav li {
@@ -1846,4 +1851,112 @@ textarea:focus {
     min-height: 520px;   /* still usable */
     max-height: 720px;   /* prevents huge scroll gaps */
   }
+}
+/* ===== Make hamburger truly fixed (transforms break fixed on mobile) ===== */
+
+/* 1) Disable the header transforms that cause the button to move */
+.box-header,
+.box-header.is-visible,
+.box-header.is-fixed {
+  -webkit-transform: none !important;
+  transform: none !important;
+}
+
+/* 2) Keep header itself pinned so nothing shifts around */
+.box-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 80px !important; /* matches your header height */
+  z-index: 9998 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 3) Pin the trigger in the top-left */
+.box-primary-nav-trigger {
+  position: fixed !important;
+  top: 16px !important;
+  bottom: auto !important;
+  transform: none !important;
+  width: 44px !important;
+  height: 44px !important;
+  z-index: 9999 !important;
+}
+
+/* Center icon inside trigger */
+.box-primary-nav-trigger .box-menu-icon {
+  left: 50% !important;
+  top: 50% !important;
+  right: auto !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Your X color rule is invalid (missing #). Force it visible. */
+.box-primary-nav-trigger .box-menu-icon.is-clicked::before,
+.box-primary-nav-trigger .box-menu-icon.is-clicked::after {
+  background-color: #ffffff !important;
+}
+
+.topbar{
+  position:fixed; top:0; left:0; right:0;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 22px;
+  z-index:50;
+  backdrop-filter: blur(var(--blur));
+  background:linear-gradient(to bottom, rgba(5,7,13,.72), rgba(5,7,13,.25));
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.brand{display:flex; align-items:center; gap:10px; letter-spacing:.08em; font-weight:700; font-size:12px}
+.brand-dot{width:8px; height:8px; border-radius:999px; background:var(--accent); box-shadow:0 0 18px rgba(140,240,255,.45)}
+.nav{display:flex; gap:18px; align-items:center}
+.nav-link{
+    color: white !important;
+    text-decoration: none !important;
+    font-size:12px; letter-spacing:.16em; opacity:.78; padding:8px 10px; border-radius:999px; border:1px solid transparent; transition:.2s ease}
+.nav-link:hover{opacity:1; border-color:rgba(255,255,255,.16); background:rgba(255,255,255,.04)}
+.nav-link.is-active{opacity:1; border-color:rgba(140,240,255,.28); box-shadow:0 0 0 1px rgba(140,240,255,.08) inset}
+
+.nav-toggle{display:none; width:44px; height:38px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); color:var(--fg)}
+.nav-toggle span{display:block; height:2px; width:18px; background:rgba(255,255,255,.85); margin:7px auto; border-radius:2px}
+
+@media (max-width:860px){
+  .nav{display:none}
+  .nav-toggle{display:block}
+}
+
+
+/* ===== Ticker marquee (from framer-style version) ===== */
+.ticker{
+  margin-top: 36px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  overflow: hidden;
+  width: 50vw;
+  margin: auto;
+  top: 118px;
+  position: relative;
+  color: white;
+  opacity: .68;
+}
+.ticker-track{
+  display:flex;
+  gap:16px;
+  padding:14px 0;
+  white-space:nowrap;
+  will-change:transform;
+  opacity:.9;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+.sep{ opacity:.4; }
+
+
+
+/* ===== Topbar responsive (show hamburger, hide links) ===== */
+@media (max-width: 860px){
+  .nav{display:none;}
+  .nav-toggle{display:block;}
 }
