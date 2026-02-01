@@ -1851,6 +1851,9 @@ textarea:focus {
     min-height: 520px;   /* still usable */
     max-height: 720px;   /* prevents huge scroll gaps */
   }
+  .box-words-wrapper b {
+    color: #393939 !important;
+  }
 }
 /* ===== Make hamburger truly fixed (transforms break fixed on mobile) ===== */
 
@@ -1959,4 +1962,9 @@ textarea:focus {
 @media (max-width: 860px){
   .nav{display:none;}
   .nav-toggle{display:block;}
+}
+
+.box-social a:active,
+.box-social a:hover {
+    color: white;
 }
