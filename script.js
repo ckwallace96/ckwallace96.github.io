@@ -228,6 +228,3 @@
   window.addEventListener('resize', updateScrollThumb, { passive: true });
   updateScrollThumb();
 })();
-
-// /* footer year */
-// document.getElementById('year').textContent = new Date().getFullYear();
