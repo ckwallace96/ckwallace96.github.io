@@ -229,5 +229,5 @@
   updateScrollThumb();
 })();
 
-/* footer year */
-document.getElementById('year').textContent = new Date().getFullYear();
+// /* footer year */
+// document.getElementById('year').textContent = new Date().getFullYear();
