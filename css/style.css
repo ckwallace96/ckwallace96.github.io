@@ -1260,6 +1260,27 @@ b i:nth-child(4) {
     display: block;
 }
 
+
+
+/* ===== Portfolio grid: force images to align perfectly (uniform tile size) =====
+   Your markup is: <div class="col-md-3 col-sm-6"><a class="portfolio_item"><img .../></a></div>
+   Different image aspect ratios were causing uneven heights. This forces a square tile + cover crop.
+*/
+.portfolio-div .col-md-3.col-sm-6 > .portfolio_item,
+.portfolio-div .col-md-3.col-sm-6 .portfolio_item{
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  display: block;
+}
+
+.portfolio-div .col-md-3.col-sm-6 .portfolio_item > img.img-responsive{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 .portfolio_item .portfolio_item_hover {
     position: absolute;
     top: 0px;
@@ -1709,3 +1730,128 @@ textarea:focus {
     }
 }
 
+.resume-showcase{
+  padding: 80px 20px 140px;
+  display:flex;
+  justify-content:center;
+}
+
+.resume-showcase__wrap{
+  width: min(1180px, 92vw);
+}
+
+.resume-showcase__card{
+  position: relative;
+  overflow:hidden;
+}
+
+/* subtle dark halo like the screenshot */
+.resume-showcase__card::before{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  pointer-events:none;
+  border-radius: 18px;
+  box-shadow: 0 0 120px rgba(0,0,0,.65);
+  opacity:.35;
+  z-index:0;
+}
+
+.resume-showcase__topbar{
+  position: relative;
+  z-index: 1;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end; /* no locale buttons */
+  padding: 16px 18px;
+  background: rgba(245,245,245,.98);
+  border-bottom: 1px solid rgba(0,0,0,.10);
+}
+
+.resume-showcase__download{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #2f3e57;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .01em;
+  text-decoration:none;
+  border: 1px solid rgba(0,0,0,.22);
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+  white-space:nowrap;
+  transition: transform .14s ease, filter .14s ease;
+}
+
+.resume-showcase__download:hover{
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+}
+
+.resume-showcase__viewer{
+  position:relative;
+  z-index: 1;
+  height: min(720px, 78vh);
+  background: #ffffff;
+  overflow:auto;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+}
+
+/* Top + bottom fade overlays (like the reference) */
+.resume-showcase__viewer::before,
+.resume-showcase__viewer::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  height: 70px;
+  z-index: 5;
+  pointer-events:none;
+}
+
+.resume-showcase__viewer::before{
+  top:0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(255,255,255,0));
+}
+
+.resume-showcase__viewer::after{
+  bottom:0;
+}
+
+.resume-showcase__frame{
+  width:100%;
+  height: 1050px; /* gives a nice scrollable doc surface */
+  border:0;
+  display:block;
+  background:#fff;
+}
+
+@media (max-width: 760px){
+  .resume-showcase{
+    padding: 54px 14px 120px;
+  }
+  .resume-showcase__topbar{
+    padding: 12px 12px;
+  }
+  .resume-showcase__download{
+    padding: 10px 14px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+  .resume-showcase__viewer{
+    height: min(620px, 75vh);
+  }
+}
+
+.resume-showcase__topbar{
+    padding: 12px 12px;
+}
+.resume-showcase__viewer{
+    height: 100%;
+}
+.resume-showcase__frame{
+    height: 860px;
+}
