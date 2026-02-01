@@ -914,7 +914,6 @@ h5 {
 
 b i:first-child {
     color: #4C5C97 !important;
-    opacity: 0.85 !important;
 }
 /* 
 b i:nth-child(2) {
@@ -1029,6 +1028,8 @@ b i:nth-child(4) {
     display: inline-block;
     position: relative;
     text-align: center;
+    color: rgb(255, 255, 255);
+    opacity: 0.85;
 }
 
 .box-words-wrapper b {
