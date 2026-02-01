@@ -1028,11 +1028,11 @@ b i:nth-child(4) {
     display: inline-block;
     position: relative;
     text-align: center;
-    color: rgb(255, 255, 255);
-    opacity: 0.85;
 }
 
 .box-words-wrapper b {
+    color: rgb(255, 255, 255) !important;
+    opacity: 0.85 !important;
     display: inline-block;
     position: absolute;
     white-space: nowrap;
