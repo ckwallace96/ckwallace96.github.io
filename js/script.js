@@ -1,7 +1,3 @@
-
-/* =========================================================
-   Starfield + vertical streaks (close to reference feel)
-   ========================================================= */
 (() => {
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d', { alpha: true });
