@@ -889,7 +889,7 @@ h5 {
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
     color: #fff;
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: bold;
 }
 .box-primary-nav a:focus {
@@ -2402,9 +2402,9 @@ textarea:focus {
   transition: opacity .3s ease;
 }
 .form-status.idle { opacity: 0; height: 0; overflow: hidden; margin-top: 0; }
-.form-status.sending { color: #aaa; opacity: 1; height: auto; margin-top: 16px; }
-.form-status.success { color: #4C5C97; opacity: 1; height: auto; margin-top: 16px; animation: pop .4s ease; }
-.form-status.error { color: #ff6b6b; opacity: 1; height: auto; margin-top: 16px; }
+.form-status.sending { color: #aaa; opacity: 1; height: auto; margin: 16px 19px 20px 16px; }
+.form-status.success { color: #aaa; opacity: 1; height: auto; margin: 16px 19px 20px 16px; animation: pop .4s ease; }
+.form-status.error { color: #ff6b6b; opacity: 1; height: auto; margin: 16px 19px 20px 16px; }
 
 @keyframes pop {
   0% { transform: scale(.95); opacity: 0; }

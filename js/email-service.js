@@ -59,7 +59,7 @@
       lockedSuccess = true;
 
       if (status) {
-        status.textContent = "Message sent ✓";
+        status.textContent = "Message sent! I'll be in touch soon.";
         status.className = "form-status success";
       }
 
