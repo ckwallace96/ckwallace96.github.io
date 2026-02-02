@@ -1746,10 +1746,6 @@ textarea:focus {
   justify-content:space-between;
 }
 
-.resume-showcase__wrap{
-  width: 44vw;
-}
-
 .resume-showcase__card{
   position: relative;
   overflow:hidden;
@@ -1765,6 +1761,12 @@ textarea:focus {
   box-shadow: 0 0 120px rgba(0,0,0,.65);
   opacity:.35;
   z-index:0;
+}
+
+.resume-showcase__row-title {
+    font-size: 22px;
+    font-weight: 600;
+    padding-bottom: 8px;
 }
 
 .resume-showcase__topbar{
@@ -1899,6 +1901,12 @@ textarea:focus {
   .iphone-showcase {
     padding-bottom: 30px !important;
   }
+  .resume-showcase__phone{
+    padding-bottom: 24px;
+  }
+  .resume-showcase {
+    padding-bottom: 30px !important;
+  }
 }
 /* ===== Make hamburger truly fixed (transforms break fixed on mobile) ===== */
 
@@ -2022,11 +2030,19 @@ textarea:focus {
   justify-content:center;
 }
 
-.iphone-showcase__wrap{
+.resume-showcase{
+  padding-bottom: 160px;
+  display:flex;
+  justify-content:center;
+}
+
+.iphone-showcase__wrap,
+.resume-showcase__wrap{
   width: min(1180px, 92vw);
 }
 
-.iphone-showcase__grid{
+.iphone-showcase__grid,
+.resume-showcase__grid{
   display:grid;
   grid-template-columns: 1fr 1.15fr;
   gap: clamp(26px, 5vw, 80px);
@@ -2034,19 +2050,26 @@ textarea:focus {
 }
 
 /* Copy styling to match the reference screenshot */
-.iphone-showcase__copy{
+.iphone-showcase__copy,
+.resume-showcase__copy{
   position:relative;
   padding-top: 10px;
 }
 
-.iphone-showcase__kicker{
+.resume-showcase__copy {
+    width: 54vw;
+}
+
+.iphone-showcase__kicker,
+.resume-showcase__kicker{
   display:flex;
   align-items:flex-start;
   gap: 14px;
   margin-bottom: 18px;
 }
 
-.iphone-showcase__num{
+.iphone-showcase__num,
+.resume-showcase__num{
   position:absolute;
   top: -18px;
   left: -8px;
@@ -2059,7 +2082,8 @@ textarea:focus {
   user-select:none;
 }
 
-.iphone-showcase__label{
+.iphone-showcase__label,
+.resume-showcase__label{
   padding-left: 6px;
   color: rgba(255,255,255,.82);
   font-weight: 600;
@@ -2068,7 +2092,8 @@ textarea:focus {
   font-size: 12px;
 }
 
-.iphone-showcase__title{
+.iphone-showcase__title,
+.resume-showcase__title{
   margin: 0 0 14px 0;
   font-size: clamp(30px, 3.2vw, 44px);
   line-height: 1.05;
@@ -2077,7 +2102,17 @@ textarea:focus {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-.iphone-showcase__desc{
+.resume-showcase__list{
+  margin: 0;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.05;
+  color: rgba(255,255,255,.92);
+  max-width: 16ch;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.iphone-showcase__desc,
+.resume-showcase__desc{
   margin: 0 0 22px 0;
   color: rgba(255,255,255,.62);
   max-width: 54ch;
@@ -2090,6 +2125,12 @@ textarea:focus {
 .iphone-showcase__row{
   padding: 12px 0;
   border-bottom: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.82);
+  font-size: 14px;
+}
+.resume-showcase__row{
+  padding: 12px 0;
+  margin-bottom: 20px;
   color: rgba(255,255,255,.82);
   font-size: 14px;
 }
@@ -2202,7 +2243,8 @@ textarea:focus {
 
 /* Responsive */
 @media (max-width: 960px){
-  .iphone-showcase__grid{
+  .iphone-showcase__grid,
+  .resume-showcase__grid{
     grid-template-columns: 1fr;
     gap: 26px;
     align-items:start;
@@ -2210,7 +2252,8 @@ textarea:focus {
   .iphone-showcase__phone{
     justify-content:center;
   }
-  .iphone-showcase__num{
+  .iphone-showcase__num,
+  .resume-showcase__num{
     left: -2px;
   }
 }
@@ -2218,14 +2261,20 @@ textarea:focus {
 /* Mobile (your site flips to white); keep this section readable there */
 @media (max-width: 760px){
   .iphone-showcase__num{ color: rgba(0,0,0,.10); }
+  .resume-showcase__num{ color: rgba(0,0,0,.10); }
   .iphone-showcase__label{ color: rgba(0,0,0,.72); }
+    .resume-showcase__label{ color: rgba(0,0,0,.72); }
   .iphone-showcase__title{ color: rgba(0,0,0,.90); }
+    .resume-showcase__title{ color: rgba(0,0,0,.90); }
   .iphone-showcase__desc{ color: rgba(0,0,0,.62); }
-  .iphone-showcase__row{
+    .resume-showcase__desc{ color: rgba(0,0,0,.62); }
+  .iphone-showcase__row,
+  .resume-showcase__row{
     color: rgba(0,0,0,.72);
     border-bottom-color: rgba(0,0,0,.10);
   }
   .iphone-showcase__list{ border-top-color: rgba(0,0,0,.10); }
+  .resume-showcase__list{ border-top-color: rgba(0,0,0,.10); }
 
   /* On white background, make the phone shadow softer */
   .iphone-frame{
@@ -2476,4 +2525,74 @@ textarea:focus {
 #contactSubmit.is-success .btn-check {
   transform: translate(-50%, -50%);
   opacity: 1;
+}
+
+.resume-skills {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.skills-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.skills-label {
+  min-width: 92px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.3px;
+}
+
+.skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* exact pill look */
+.chip {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  white-space: nowrap;
+  line-height: 1.1;
+}
+
+.chip:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.30);
+}
+
+/* Job chips under each role */
+.job-chips {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.job-chips .chip {
+  padding: 6px 12px;
+  font-size: 12.5px;
+}
+
+@media (max-width: 600px) {
+  .skills-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .skills-label {
+    min-width: 0;
+  }
 }

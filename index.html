@@ -227,37 +227,42 @@
     </div>
 
     <section class="resume-showcase" id="resume" aria-label="Resume">
-         <div class="iphone-showcase__copy">
-            <div class="iphone-showcase__kicker">
+         <div class="resume-showcase__copy">
+            <div class="resume-showcase__kicker">
               <!-- <span class="iphone-showcase__num" aria-hidden="true">X</span> -->
-              <span class="iphone-showcase__label">Work Experience</span>
+              <span class="resume-showcase__label">Work Experience</span>
             </div>
 
-            <h2 class="iphone-showcase__title">Resume</h2>
+            <h2 class="resume-showcase__title">Resume</h2>
          
-            <div class="iphone-showcase__list" role="list">
-                <div class="iphone-showcase__row" role="listitem">
-                    Google
-                    <p class="iphone-showcase__desc">
-                        Worked on the Looker Studio and BigQuery Data Canvas teams. 
-                        Shipped production features mostly in Angular and Typescript, used by thousands. Collaborated cross-functionally with design, supported on-call 
-                        while maintaining performance and UX quality.
-                    </p>
-                </div>
-              <div class="iphone-showcase__row" role="listitem">
-                Origin Investments
-                <p class="iphone-showcase__desc">
-                    Built a mobile/web application to support real-estate investing. React Native, Java, AWS, and MongoDB used in development. Delivered investment 
-                    workflows, admin dashboards, and business-critical features in a fast-paced startup environment with end-to-end ownership.
+            <div class="resume-showcase__list" role="list">
+              <div class="resume-showcase__row" role="listitem" data-role="google">
+                <div class="resume-showcase__row-title">Google</div>
+                <p class="resume-showcase__desc">
+                  Worked on the Looker Studio and BigQuery Data Canvas teams. 
+                  Shipped production features mostly in Angular and Typescript, used by thousands. Collaborated cross-functionally with design, supported on-call 
+                  while maintaining performance and UX quality.
                 </p>
+                <div class="job-chips" aria-label="Google tech chips"></div>
               </div>
-              <div class="iphone-showcase__row" role="listitem">
-                Perficient, Facebook
-                <p class="iphone-showcase__desc">
-                    Worked on internal applications for Facebook. React-based development, collaborated with design teams and internal shareholders to ship production features.
+              <div class="resume-showcase__row" role="listitem" data-role="origin-investments">
+                <div class="resume-showcase__row-title">Origin Investments</div>
+                <p class="resume-showcase__desc">
+                  Built a mobile/web application to support real-estate investing. React Native, Java, AWS, and MongoDB used in development. Delivered investment 
+                  workflows, admin dashboards, and business-critical features in a fast-paced startup environment with end-to-end ownership.
                 </p>
-                </div>
+                <div class="job-chips" aria-label="Origin Investments tech chips"></div>
+              </div>
+              <div class="resume-showcase__row" role="listitem" data-role="perficient-facebook">
+                <div class="resume-showcase__row-title">Perficient, Facebook</div>
+                <p class="resume-showcase__desc">
+                  Worked on internal applications for Facebook. React-based development, collaborated with design teams and internal shareholders to ship production features.
+                </p>
+                <div class="job-chips" aria-label="Perficient/Facebook tech chips"></div>
+              </div>
             </div>
+
+            <!-- <div id="resume-skills-mount"></div> -->
           </div>
       <div class="resume-showcase__wrap">
         <div class="resume-showcase__card">
@@ -384,5 +389,6 @@
     <script src="js/custom.js"></script>
     <script src="js/script.js"></script>
     <script src="js/email-service.js"></script>
+    <script src="js/work-experience-service.js"></script>
 </body>
 </html>
