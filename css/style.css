@@ -959,10 +959,10 @@ b i:first-child {
     color: #4C5C97 !important;
 }
 
-b i:nth-child(2) {
+/* b i:nth-child(2) {
     color: #4C5C97 !important;
     opacity: 0.85 !important;
-}
+} */
 /* 
 b i:nth-child(3) {
     color: #4C5C97 !important;
