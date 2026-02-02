@@ -1027,6 +1027,7 @@ b i:nth-child(4) {
     font-size: 130px;
     line-height: 1.0;
     text-align: center;
+    margin-top: 68px !important;
 }
 
 .box-words-wrapper {
