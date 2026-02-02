@@ -2042,13 +2042,19 @@ textarea:focus {
   width: min(1180px, 92vw);
 }
 
-.iphone-showcase__grid,
 .resume-showcase__grid{
   display:grid;
   grid-template-columns: 1fr 1.15fr;
   gap: clamp(26px, 5vw, 80px);
   align-items:center;
 }
+
+.iphone-showcase__grid{
+  display:grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(26px, 5vw, 80px);
+}
+
 
 /* Copy styling to match the reference screenshot */
 .iphone-showcase__copy{
@@ -2620,7 +2626,7 @@ textarea:focus {
    (added)
 ================================ */
 .section-divider{
-  width: min(1100px, 92vw);
+  width: min(1600px, 92vw);
   height: 1px;
   margin: 54px auto;
   background: linear-gradient(to right,
@@ -2678,7 +2684,7 @@ textarea:focus {
 
 
 /* Glass content wrapper for resume/app copy */
-.glass-panel{
+.iphone-glass-panel{
   background: rgba(18,22,30,0.65);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 18px;
@@ -2686,6 +2692,8 @@ textarea:focus {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+  margin-top: 196px;
+  height: fit-content;
 }
 
 /* Make section kickers stick as you scroll through the section */
