@@ -26,11 +26,39 @@ body{
   /* background: radial-gradient(900px 420px at 50% 70%, rgba(52,88,140,.18), transparent 65%),
     radial-gradient(900px 420px at 50% 110%, rgba(10,20,35,.85), transparent 70%),
     linear-gradient(180deg, var(--bg0), var(--bg1) 60%, #0c1322); */
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.06), transparent 40%),
-    url("../img/space.jpg") center center / cover no-repeat fixed,
-    #05070d;
+  /*
+    Chrome/WebKit can show faint rectangular "bands" when using
+    background-attachment: fixed on a large image AND other elements
+    on the page create GPU-composited layers (shadows, transforms, etc.).
+
+    Instead of using background-attachment: fixed, we render the image
+    on a fixed pseudo-element behind the page. This keeps the look
+    identical but removes the banding artifact.
+  */
+  background: #05070d;
   overflow-x:hidden;
+}
+
+/* Fixed background image layer (replaces background-attachment: fixed) */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: url("../img/space.jpg") center center / cover no-repeat;
+  z-index:-4;
+  pointer-events:none;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* subtle highlight layer that previously lived in body background */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.06), transparent 40%);
+  z-index:-4;
+  pointer-events:none;
 }
 
 #stars{
@@ -473,6 +501,10 @@ code{ color: rgba(255,255,255,.8); font-family: ui-monospace, SFMono-Regular, Me
       linear-gradient(180deg, var(--bg0), var(--bg1) 60%, #0c1322); */
 
     background: white;
+  }
+  body::before,
+  body::after{
+    display:none;
   }
   .vignette { display:none; }
   .sub{
