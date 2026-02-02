@@ -56,6 +56,7 @@
                 <li><a href="#top">Home</a>
                 <!-- <li><a href="work.html">Portfolio</a></li> -->
                 <li><a href="#resume">Resume</a></li>
+                <li><a href="#app">App</a></li>
                 <!-- <li><a href="about.html">Bio</a></li></li> -->
                 <!-- <li><a href="contact.html">Contact</a></li> -->
                 <li class="box-label"></li>
@@ -71,15 +72,15 @@
         <section class="box-intro" id="top">
             <div class="table-cell">
                 <h1 class="box-headline letters rotate-2">
-                    <!-- <span class="box-words-wrapper">
-                        <b class="is-visible">ckwallace</b>
-                    </span> -->
-
                     <span class="box-words-wrapper">
+                        <b class="is-visible">ckwallace</b>
+                    </span>
+
+                    <!-- <span class="box-words-wrapper">
                         <b class="is-visible">Clarence</b>
                         <b>Kashawn</b>
                         <b>Wallace</b>
-                    </span>
+                    </span> -->
 		        </h1>
                 <!-- <h5 style="color: #90A1B9;">Software Engineer | California</h5> -->
                 <p class="sub">
@@ -143,8 +144,7 @@
         <!-- end box-intro -->
     </div>
 
-    <!-- portfolio div -->
-    <div class="portfolio-div" id="photos">
+       <div class="portfolio-div" id="photos">
         <div class="portfolio">
             <div class="no-padding portfolio_container">
                 <!-- single work -->
@@ -224,20 +224,9 @@
                         </div>
                     </a>
                 </div>
-
-                
-
-                <!-- end single work -->
-
-                <!-- single work -->
-                
-                <!-- end single work -->
             </div>
-            <!-- end portfolio_container -->
         </div>
-        <!-- portfolio -->
     </div>
-    <!-- end portfolio div -->
 
     <section class="resume-showcase" id="resume" aria-label="Resume">
       <div class="resume-showcase__wrap">
@@ -254,11 +243,63 @@
       </div>
     </section>
 
-    <!-- <footer>
+    <!-- iphone showcase -->
+    <section class="iphone-showcase" id="app" aria-label="App demo">
+      <div class="iphone-showcase__wrap">
+        <div class="iphone-showcase__grid">
+          <div class="iphone-showcase__copy">
+            <div class="iphone-showcase__kicker">
+              <span class="iphone-showcase__num" aria-hidden="true">02</span>
+              <span class="iphone-showcase__label">Mobile app</span>
+            </div>
+
+            <h2 class="iphone-showcase__title">See the product in motion.</h2>
+            <p class="iphone-showcase__desc">
+              A quick look at the experience — design, interaction, and polish. Swap the media to show a screen recording,
+              a screenshot, or your latest build.
+            </p>
+
+            <div class="iphone-showcase__list" role="list">
+              <div class="iphone-showcase__row" role="listitem">Real UI flows (screen recording)</div>
+              <div class="iphone-showcase__row" role="listitem">Pixel‑sharp visuals inside an iPhone frame</div>
+              <div class="iphone-showcase__row" role="listitem">Easy to replace media with one file path</div>
+            </div>
+
+            <!-- Optional: quick notes for you
+              - To show a VIDEO: keep the <video> element and set the src to your mp4/webm
+              - To show an IMAGE instead: replace the <video> with <img class="iphone-showcase__media" src="img/your-shot.jpg" alt="App screenshot" />
+            -->
+          </div>
+
+          <div class="iphone-showcase__phone" aria-label="iPhone mockup">
+            <div class="iphone-frame" role="img" aria-label="iPhone frame">
+              <div class="iphone-frame__screen">
+                <video
+                  class="iphone-showcase__media"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster=""
+                >
+                  <!-- Put your file in the repo and update this path -->
+                  <source src="media/iphone.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div class="iphone-frame__notch" aria-hidden="true"></div>
+              <div class="iphone-frame__shine" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
         <div class="container-fluid">
             <p class="copyright">© Monaco 2026</p>
         </div>
-    </footer> -->
+    </footer>
 
     <!-- back to top -->
     <a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
