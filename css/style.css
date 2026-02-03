@@ -2508,7 +2508,7 @@ textarea:focus {
    Company Logos Section
    ========================= */
 .logo-section{
-  padding: 30px 20px 40px;
+  padding: 30px 20px 68px;
   display:flex;
   justify-content:center;
 }
@@ -2950,5 +2950,29 @@ textarea:focus {
     width: 100%;
     padding-left: 0px;
     padding-top: 0px;
+  }
+
+  /* Hide companies ticker on mobile */
+  .logo-section{
+    display: none;
+  }
+
+  /* Bio mobile styling: no panel, black text */
+  .bio-copy{
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    padding-bottom: 40px;
+  }
+  .bio-kicker,
+  .bio-title,
+  .bio-desc{
+    color: rgba(0,0,0,0.85);
+  }
+  .bio-photo__frame{
+    box-shadow: none;
+    border: none;
   }
 }
