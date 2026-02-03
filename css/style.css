@@ -1917,7 +1917,7 @@ textarea:focus {
 
 /* ===== iPhone showcase section (between photos + resume) ===== */
 .iphone-showcase{
-  padding-bottom: 75px;
+  padding-bottom: 50px;
   display:flex;
   justify-content:center;
 }
@@ -2033,6 +2033,130 @@ textarea:focus {
   max-width: 54ch;
   line-height: 1.65;
 }
+
+/* =========================.project-showcase__kicker
+   Project Showcase
+   ========================= */
+.project-showcase{
+  padding: 0 20px 80px;
+  display:flex;
+  justify-content:center;
+}
+
+.project-showcase__wrap{
+  width: min(1180px, 92vw);
+}
+
+.project-showcase__header{
+  margin: 0 auto 48px;
+  text-align: left;
+}
+
+.project-showcase__kicker{
+  color: rgba(255,255,255,.82);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: 15px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.project-showcase__title{
+  margin: 0;
+  font-size: clamp(26px, 3vw, 36px);
+  color: rgba(255,255,255,.92);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.project-showcase__list{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.project-card{
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(320px, 1.4fr);
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+  padding: 16px;
+  border-radius: 18px;
+    background: none;
+    box-shadow: none;
+    border: none;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.project-card:hover{
+  /* transform: translateY(-2px); */
+  /* border-color: rgba(255,255,255,.18); */
+  /* background: rgba(0,0,0,.28); */
+}
+
+.project-card:visited,
+.project-card:active,
+.project-card:focus{
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.project-card__media{
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(12,16,24,.55);
+  min-height: 170px;
+}
+
+.project-card__media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card__panel{
+  background: rgba(18,22,30,0.65);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 18px 20px 48px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  height: fit-content;
+    margin-left: 112px;
+    margin-top: 20px;
+}
+
+.project-card__kicker{
+  color: rgba(255,255,255,.75);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.project-card__title{
+  font-size: clamp(20px, 2.4vw, 28px);
+  margin: 0 0 10px 0;
+  color: rgba(255,255,255,.95);
+}
+
+.project-card__desc{
+  margin: 0;
+  color: rgba(255,255,255,.65);
+  line-height: 1.6;
+}
+
+@media (max-width: 960px){
+  .project-card{
+    grid-template-columns: 1fr;
+  }
+}
+
 .iphone-showcase__list{
   margin-top: 18px;
   max-width: 62ch;
