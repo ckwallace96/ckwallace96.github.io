@@ -2657,58 +2657,44 @@ textarea:focus {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-.logo-ticker{
-  overflow: hidden;
-}
-
-.logo-track{
+.logo-row{
   list-style: none;
   margin: 0;
-  padding: 10px 2px;
+  padding: 8px 0 2px;
   display:flex;
-  gap: 16px;
-  align-items:center;
-  width: max-content;
-  animation: logoMarquee 120s linear infinite;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .logo-item{
   min-width: 170px;
   height: 70px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(0,0,0,0.28);
+  border-radius: 0;
+  border: none;
+  background: none;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding: 6px 10px;
+  padding: 0;
   text-align:center;
-  flex: 0 0 auto;
 }
-
 
 .logo-image{
-    max-width: 140px;
-    max-height: 44px;
-    width: 92%;
-    height: auto;
-    object-fit: cover;
-    display: block;
+  max-width: 140px;
+  max-height: 44px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  display: block;
 }
 
-
-@keyframes logoMarquee{
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .logo-track{
-    animation: none;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.logo-image--wide{
+  max-width: 170px;
+  max-height: 54px;
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 960px){
