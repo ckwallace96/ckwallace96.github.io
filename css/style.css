@@ -2034,9 +2034,6 @@ textarea:focus {
   line-height: 1.65;
 }
 
-/* =========================.project-showcase__kicker
-   Project Showcase
-   ========================= */
 .project-showcase{
   padding: 0 20px 80px;
   display:flex;
@@ -2048,7 +2045,7 @@ textarea:focus {
 }
 
 .project-showcase__header{
-  margin: 0 auto 48px;
+  margin: 0 auto 26px;
   text-align: left;
 }
 
@@ -2059,7 +2056,6 @@ textarea:focus {
   text-transform: uppercase;
   font-size: 15px;
   margin-bottom: 10px;
-  margin-left: 20px;
 }
 
 .project-showcase__title{
