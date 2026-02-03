@@ -399,7 +399,7 @@
           <!-- <h2 class="project-showcase__title">Product Highlights</h2> -->
         </div>
 
-        <section class="iphone-showcase" id="app" aria-label="App demo">
+        <section class="iphone-showcase desktop-only" id="app" aria-label="App demo">
           <div class="iphone-showcase__wrap">
             <div class="iphone-showcase__grid">
               <div class="iphone-showcase__phone" aria-label="iPhone mockup">
@@ -445,7 +445,54 @@
           </div>
         </section>
 
-        <div class="project-showcase__list">
+        <section class="iphone-showcase mobile-only" aria-label="App demo mobile">
+          <div class="iphone-showcase__wrap">
+            <div class="iphone-showcase__grid">
+              <div class="iphone-showcase__copy iphone-glass-panel">
+                <div class="iphone-showcase__kicker">
+                  <span class="iphone-showcase__num" aria-hidden="true">X</span>
+                  <span class="iphone-showcase__label">Mobile Development / Game Development</span>
+                </div>
+
+                <h2 class="iphone-showcase__title">Augmented Reality Mobile Game</h2>
+
+                <div class="iphone-showcase__phone" aria-label="iPhone mockup">
+                  <div class="iphone-frame" role="img" aria-label="iPhone frame">
+                    <div class="iphone-frame__screen">
+                      <video
+                        class="iphone-showcase__media"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        poster=""
+                      >
+                        <source src="assets/gameplay.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                    <div class="iphone-frame__notch" aria-hidden="true"></div>
+                    <div class="iphone-frame__shine" aria-hidden="true"></div>
+                  </div>
+                </div>
+
+                <p class="iphone-showcase__desc">
+                  An augmented reality mobile game that turns everyday surroundings into an immersive combat arena. 
+                    Fight AI-driven enemies, upgrade your gear, and customize your character. A project that pushes the boundaries
+                    of what mobile gaming can feel like, delivering a unique blend of spatial computing and addictive gameplay.
+                </p>
+
+                <div class="iphone-showcase__list" role="list">
+                  <div class="iphone-showcase__row" role="listitem">Built with Unity, Unity Gaming Services</div>
+                  <div class="iphone-showcase__row" role="listitem">Experience immersive gameplay in a new reality</div>
+                  <div class="iphone-showcase__row" role="listitem">Scan your environment using latest LiDAR technology</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="project-showcase__list desktop-only">
           <div class="project-card">
             <div class="project-card__media">
               <img src="img/bigquery_gif.gif" alt="BigQuery Data Canvas preview" />
@@ -500,6 +547,64 @@
                 Worked on a internal human resources platform for Facebook. I launched features end-to-end, creating frontend experiences,
                 building backend systems, and refining flows with design teams and internal shareholders. I also delivered multiple presentations 
                 on development patterns to cross-functional teams.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-showcase__list mobile-only">
+          <div class="project-card">
+            <div class="project-card__panel">
+              <div class="project-card__kicker">Data Visualization, AI</div>
+              <div class="project-card__title">BigQuery Data Canvas</div>
+              <div class="project-card__media">
+                <img src="img/bigquery_gif.gif" alt="BigQuery Data Canvas preview" />
+              </div>
+              <p class="project-card__desc">
+                A visual canvas for exploring data with SQL and AI. I built fast, intuitive interactions that help
+                teams move from messy datasets to clear insights in a few clicks.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card__panel">
+              <div class="project-card__kicker">Analytics, AI</div>
+              <div class="project-card__title">Looker Studio</div>
+              <div class="project-card__media">
+                <img src="img/looker-example.png" alt="Looker Studio preview" />
+              </div>
+              <p class="project-card__desc">
+                A reporting surface built for speed and clarity. I worked on smoother dashboards, smarter
+                interactions, and collaboration flows that make data feel human.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card__panel">
+              <div class="project-card__kicker">Real Estate Investing / Financial Tech Startup</div>
+              <div class="project-card__title">Origin Investments</div>
+              <div class="project-card__media">
+                <img src="img/origin-example.png" alt="Origin Investments preview" />
+              </div>
+              <p class="project-card__desc">
+                End-to-end product work across mobile and web. I shipped investor journeys, admin tools, and
+                onboarding that feels premium without feeling complicated.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card__panel">
+              <div class="project-card__kicker">Enterprise Internal Tools</div>
+              <div class="project-card__title">Facebook People Portal</div>
+              <div class="project-card__media">
+                <img src="img/fb-example.jpg" alt="Facebook People Portal preview" />
+              </div>
+              <p class="project-card__desc">
+                Internal people-platform tooling built for clarity and speed. I led the frontend experience,
+                refining flows with design and partners so teams could move fast with confidence.
               </p>
             </div>
           </div>
