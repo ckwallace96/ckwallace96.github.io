@@ -18,7 +18,7 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%; cursor: none;}
 body{
   margin:0;
   color:var(--text);
@@ -2056,6 +2056,7 @@ textarea:focus {
   text-transform: uppercase;
   font-size: 15px;
   margin-bottom: 10px;
+  display: none;
 }
 
 .project-showcase__title{
@@ -2910,6 +2911,66 @@ textarea:focus {
   -webkit-backdrop-filter: blur(10px);
 }
 
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+}
+
+/* inner dot — solid, sharp */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* outer ring — thin stroke only */
+.cursor-ring {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+}
+
+/* hover state — scale only */
+.cursor--hover .cursor-ring {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* click state — subtle shrink */
+.cursor--down .cursor-ring {
+  width: 32px;
+  height: 32px;
+}
+
+/* optional: keep text cursor for inputs */
+input,
+textarea {
+  cursor: text;
+}
+
+/* disable custom cursor on touch devices */
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+
+  html,
+  body {
+    cursor: auto;
+  }
+}
+
+
 /* Mobile Styling: use viewport height so it never creates giant gaps */
 @media (max-width: 760px){
   .resume-showcase__topbar{
@@ -2990,7 +3051,7 @@ textarea:focus {
   .resume-showcase__num{ color: rgba(0,0,0,.10); }
   .iphone-showcase__label{ color: rgba(0,0,0,.72); }
     .resume-showcase__label{ color: rgba(0,0,0,.72); padding: 0; }
-  .iphone-showcase__title{ color: rgba(0,0,0,.90); }
+  .iphone-showcase__title{ color: rgba(0,0,0,.90); padding: 0 18px; }
     .resume-showcase__title{ color: rgba(0,0,0,.90); margin: 0; }
   .iphone-showcase__desc{ color: rgba(0,0,0,.62); }
     .resume-showcase__desc{ color: rgba(0,0,0,.62); }
@@ -3100,8 +3161,14 @@ textarea:focus {
   .project-showcase {
     padding: 0 20px 28px;
   }
-  /* Project showcase mobile styling: no panels, black text */
-  .project-showcase__kicker,
+  .project-showcase__kicker{
+    display: block;
+    color: rgba(0,0,0,.72);
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
   .project-showcase__title,
   .project-card__kicker,
   .project-card__title,
@@ -3134,6 +3201,15 @@ textarea:focus {
   }
   .desktop-only{ display: none !important; }
   .mobile-only{ display: block !important; }
+  .project-showcase__header {
+    padding: 0 20px;
+  }
+  .iphone-showcase__kicker {
+    padding: 0 20px;
+  }
+  .project-showcase__header {
+    margin: 0 auto 32px;
+  }
 }
 
 /* Hide mobile-only on desktop */
