@@ -2617,11 +2617,12 @@ textarea:focus {
   width: min(1600px, 92vw);
   height: 1px;
   margin: 54px auto;
-  background: linear-gradient(to right,
+  background: transparent;
+  /* background: linear-gradient(to right,
     transparent,
     rgba(255,255,255,0.18),
     transparent
-  );
+  ); */
   opacity: 0.75;
 }
 
